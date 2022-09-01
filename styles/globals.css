@@ -528,7 +528,7 @@ span.text-red {
 }
 .quantity-desc .num {
 	border-right: 1px solid gray;
-	font-size: 20px;
+	font-size: 16px;
 }
 .quantity-desc .plus {
 	color: rgb(49, 168, 49);
