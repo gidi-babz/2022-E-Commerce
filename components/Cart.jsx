@@ -44,6 +44,58 @@ const Cart = () => {
 						</Link>
 					</div>
 				)}
+
+				<div className="product-container">
+					{cartItems.length >= 1 &&
+						cartItems.map((item) => (
+							<div key={item._id} className="product">
+								<img
+									src={urlFor(item?.image[0])}
+									alt={item.name}
+									className="cart-product-image"
+								/>
+
+								<div className="item-desc">
+									<div className="flex top">
+										<h5>{item.name}</h5>
+										<h4>${item.price}</h4>
+									</div>
+
+									<div className="flex bottom">
+										<div>
+											<p className="quantity-desc">
+												<span onClick="" className="minus">
+													<AiOutlineMinus />
+												</span>
+												<span onClick="" className="num">
+													0
+												</span>
+												<span onClick="" className="plus">
+													<AiOutlinePlus />
+												</span>
+											</p>
+										</div>
+										<button type="button" onClick="" className="remove-item">
+											<TiDeleteOutline />
+										</button>
+									</div>
+								</div>
+							</div>
+						))}
+				</div>
+				{cartItems.length >= 1 && (
+					<div className="cart-bottom">
+						<div className="total">
+							<h3>Subtotal:</h3>
+							<h3>${totalPrice}</h3>
+						</div>
+						<div className="button-container">
+							<button className="btn" type="button" onclick="">
+								Pay with Stripe
+							</button>
+						</div>
+					</div>
+				)}
 			</div>
 		</div>
 	);
