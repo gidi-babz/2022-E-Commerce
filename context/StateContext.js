@@ -4,70 +4,104 @@ import { toast } from 'react-hot-toast';
 const Context = createContext();
 
 export const StateContext = ({ children }) => {
-	const [showCart, setShowCart] = useState(false);
-	const [cartItems, setCartItems] = useState([]);
-	const [totalPrice, setTotalPrice] = useState(0);
-	const [totalQuantities, setTotalQuantities] = useState(0);
-	const [qty, setQty] = useState(1);
+  const [showCart, setShowCart] = useState(false);
+  const [cartItems, setCartItems] = useState([]);
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalQuantities, setTotalQuantities] = useState(0);
+  const [qty, setQty] = useState(1);
+  const [index, setIndex] = useState(0);
 
-	const onAdd = (product, quantity) => {
-		const checkProductInCart = cartItems.find(
-			(item) => item._id === product._id
-		);
+  let foundProduct;
+  let Index;
 
-		setTotalPrice(
-			(prevTotalPrice) => prevTotalPrice + product.price * quantity
-		);
-		setTotalQuantities((prevTotalQuantity) => prevTotalQuantity + quantity);
+  const onAdd = (product, quantity) => {
+    const checkProductInCart = cartItems.find(item => item._id === product._id);
 
-		if (checkProductInCart) {
-			const UpdateCartItems = cartItems.map((cartProduct) => {
-				if (cartProduct._id === product._id)
-					return {
-						...cartProduct,
-						quantity: cartProduct.quantity + quantity,
-					};
-			});
+    setTotalPrice(prevTotalPrice => prevTotalPrice + product.price * quantity);
+    setTotalQuantities(prevTotalQuantity => prevTotalQuantity + quantity);
 
-			setCartItems(UpdateCartItems);
-		} else {
-			product.quantity = quantity;
+    if (checkProductInCart) {
+      const UpdateCartItems = cartItems.map(cartProduct => {
+        if (cartProduct._id === product._id)
+          return {
+            ...cartProduct,
+            quantity: cartProduct.quantity + quantity,
+          };
+      });
 
-			setCartItems([...cartItems, { ...product }]);
-		}
+      setCartItems(UpdateCartItems);
+    } else {
+      product.quantity = quantity;
 
-		toast.success(`${qty} ${product.name} was added to the cart`);
-	};
+      setCartItems([...cartItems, { ...product }]);
+    }
 
-	const increaseQty = () => {
-		setQty((prevQty) => prevQty + 1);
-	};
+    toast.success(`${qty} ${product.name} was added to the cart`);
+  };
 
-	const decreaseQty = () => {
-		setQty((prevQty) => {
-			if (prevQty - 1 < 1) return 1;
+  const toggleCartItemQuantity = (id, value) => {
+    foundProduct = cartItems.find(item => item._id === id);
+    Index = cartItems.findIndex(product => product._id === id);
+    const newCartItems = cartItems.filter(item => item._id !== id);
 
-			return prevQty - 1;
-		});
-	};
+    if (value === 'inc') {
+      setCartItems([
+        ...newCartItems,
+        {
+          ...foundProduct,
+          quantity: foundProduct.quantity + 1,
+        },
+      ]);
 
-	return (
-		<Context.Provider
-			value={{
-				showCart,
-				setShowCart,
-				cartItems,
-				totalQuantities,
-				totalPrice,
-				qty,
-				increaseQty,
-				decreaseQty,
-				onAdd,
-			}}
-		>
-			{children}
-		</Context.Provider>
-	);
+      setTotalPrice(prevTotalPrice => prevTotalPrice + foundProduct.price);
+      setTotalQuantities(prevTotalQuantities => prevTotalQuantities + 1);
+    }
+
+    if (value === 'dec') {
+      if (foundProduct.quantity > 1) {
+        setCartItems([
+          ...newCartItems,
+          { ...foundProduct, quantity: foundProduct.quantity - 1 },
+        ]);
+
+        setTotalPrice(prevTotalPrice => prevTotalPrice - foundProduct.price);
+        setTotalQuantities(prevTotalQuantities => prevTotalQuantities - 1);
+      }
+    }
+  };
+
+  const increaseQty = () => {
+    setQty(prevQty => prevQty + 1);
+  };
+
+  const decreaseQty = () => {
+    setQty(prevQty => {
+      if (prevQty - 1 < 1) return 1;
+
+      return prevQty - 1;
+    });
+  };
+
+  return (
+    <Context.Provider
+      value={{
+        showCart,
+        setShowCart,
+        cartItems,
+        totalQuantities,
+        totalPrice,
+        qty,
+        increaseQty,
+        decreaseQty,
+        onAdd,
+        toggleCartItemQuantity,
+        index,
+        setIndex,
+      }}
+    >
+      {children}
+    </Context.Provider>
+  );
 };
 
 export const useStateContext = () => useContext(Context);
