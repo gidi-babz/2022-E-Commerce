@@ -620,7 +620,7 @@ span.text-red {
   width: 100%;
   height: 100%;
 
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.2);
   z-index: 100;
   backdrop-filter: blur(2px);
 
@@ -788,5 +788,55 @@ span.text-red {
   .btn-container {
     width: 300px;
     margin: auto;
+  }
+}
+
+@media screen and (max-width: 350px) {
+  .cart-container {
+    width: 380px;
+    height: 780px;
+  }
+
+  .product-detail-container {
+    margin: 35px auto;
+  }
+  .product-detail-image {
+    width: 360px !important;
+    height: 360px !important;
+    margin-right: 5px;
+  }
+  .marquee {
+    width: 350px;
+  }
+
+  .layout {
+    width: 380px;
+    height: 780px;
+  }
+
+  .success {
+    width: 355px;
+  }
+  .footer-banner-container,
+  .hero-banner-container {
+    width: 373px;
+  }
+
+  .hero-banner-container h1 {
+    font-size: 100px;
+  }
+
+  .footer-banner-image {
+    width: 65%;
+    height: 40%;
+  }
+
+  .hero-banner-image {
+    width: 55%;
+    height: 35%;
+  }
+
+  .banner-desc .right h3 {
+    font-size: 40px;
   }
 }
