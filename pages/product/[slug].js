@@ -14,8 +14,16 @@ import { useStateContext } from '../../context/StateContext';
 const ProductDetails = ({ product, products }) => {
   const { image, name, details, price } = product;
 
-  const { decreaseQty, increaseQty, qty, onAdd, index, setIndex, setShowCart } =
-    useStateContext();
+  const {
+    decreaseQty,
+    increaseQty,
+    qty,
+    onAdd,
+    index,
+    setIndex,
+    setShowCart,
+    setIsLoading,
+  } = useStateContext();
 
   const handleBuyNow = () => {
     onAdd(product, qty);
@@ -132,8 +140,6 @@ export const getStaticProps = async ({ params: { slug } }) => {
 
   const product = await client.fetch(query);
   const products = await client.fetch(productsQuery);
-
-  console.log(product);
 
   return {
     props: { products, product },

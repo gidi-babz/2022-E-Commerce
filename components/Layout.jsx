@@ -4,24 +4,31 @@ import Head from 'next/head';
 import Navbar from './Navbar';
 import Footer from './Footer';
 
+import Spinner from '../UI/Spinner';
+
+import { useStateContext } from '../context/StateContext';
+
 const Layout = ({ children }) => {
-	return (
-		<div className="layout">
-			<Head>
-				<title>Babz Online Stores</title>
-			</Head>
+  const { isLoading, setIsLoading } = useStateContext();
 
-			<header>
-				<Navbar />
-			</header>
+  return (
+    <div className="layout">
+      {isLoading && <Spinner />}
+      <Head>
+        <title>Babz Online Stores</title>
+      </Head>
 
-			<main className="main-container">{children}</main>
+      <header>
+        <Navbar />
+      </header>
 
-			<footer>
-				<Footer />
-			</footer>
-		</div>
-	);
+      <main className="main-container">{children}</main>
+
+      <footer>
+        <Footer />
+      </footer>
+    </div>
+  );
 };
 
 export default Layout;
