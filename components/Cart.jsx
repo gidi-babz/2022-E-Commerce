@@ -103,9 +103,7 @@ const Cart = () => {
                         >
                           <AiOutlineMinus />
                         </span>
-                        <span onClick="" className="num">
-                          {item.quantity}
-                        </span>
+                        <span className="num">{item.quantity}</span>
                         <span
                           onClick={() =>
                             toggleCartItemQuantity(item._id, 'inc')
