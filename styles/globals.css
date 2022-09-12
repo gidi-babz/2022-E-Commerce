@@ -823,7 +823,7 @@ span.text-red {
   }
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (min-width: 541px) {
   .banner-desc {
     margin-top: -81px;
   }
