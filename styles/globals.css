@@ -649,33 +649,64 @@ span.text-red {
   }
 }
 
+@media screen and (min-width: 801px) {
+  .hero-banner-image {
+    left: 45%;
+  }
+
+  .banner-desc .left h3 {
+    font-size: 60px;
+  }
+
+  .banner-desc .right {
+    z-index: 100;
+  }
+
+  .banner-desc .right h3 {
+    font-size: 55px;
+  }
+}
+
 @media screen and (max-width: 800px) {
   .hero-banner-container {
     height: 560px;
   }
+
+  .hero-banner-container h1 {
+    font-size: 140px !important;
+  }
+
+  .hero-banner-container button {
+    margin-top: 50px !important;
+  }
+
   .hero-banner-image {
-    width: 77%;
     height: 62%;
     top: -2%;
-    right: -6%;
+    left: 40%;
+    width: 55%;
   }
   .footer-banner-container {
     height: 560px;
     margin-top: 80px;
   }
   .footer-banner-image {
-    width: 77%;
-    left: 30%;
-    top: 6%;
-    height: 56%;
+    width: 67%;
+    left: 31%;
+    top: -1%;
+    height: 75%;
   }
   .banner-desc .left h3 {
     font-weight: 900;
-    font-size: 50px;
+    font-size: 85px;
     margin-left: 5px;
   }
   .banner-desc .left p {
     margin: 18px;
+  }
+  .banner-desc .right {
+    margin-top: 37px;
+    z-index: 100;
   }
   .banner-desc .right h3 {
     font-size: 45px;
@@ -689,6 +720,7 @@ span.text-red {
   .banner-desc {
     flex-wrap: wrap;
     gap: 20px;
+    margin-top: 40px;
   }
   .hero-banner-container {
     line-height: 1.3;
@@ -791,6 +823,30 @@ span.text-red {
   }
 }
 
+@media screen and (max-width: 600px) {
+  .banner-desc {
+    margin-top: -81px;
+  }
+}
+
+@media screen and (max-width: 541px) {
+  .banner-desc {
+    gap: 5px;
+    margin-top: 3px;
+  }
+
+  .banner-desc .left h3 {
+    font-size: 45px;
+  }
+
+  .footer-banner-image {
+    width: 65%;
+    left: 31%;
+    top: -1%;
+    height: 60%;
+  }
+}
+
 @media screen and (max-width: 480px) {
   .cart-container {
     width: auto;
@@ -849,7 +905,7 @@ span.text-red {
 
 @media screen and (max-width: 395px) {
   .cart-wrapper {
-    width: 102vw;
+    width: 105vw;
     height: 150vh;
   }
 }
