@@ -49,7 +49,7 @@ const Cart = () => {
 
   return (
     <div className="cart-wrapper" ref={cartRef}>
-      <div className="cart-container">
+      <ul className="cart-container">
         <button
           type="button"
           className="cart-heading"
@@ -79,7 +79,7 @@ const Cart = () => {
         <div className="product-container">
           {cartItems.length >= 1 &&
             cartItems.map(item => (
-              <div key={item._id} className="product">
+              <li key={item._id} className="product">
                 <img
                   src={urlFor(item?.image[index])}
                   alt={item.name}
@@ -123,7 +123,7 @@ const Cart = () => {
                     </button>
                   </div>
                 </div>
-              </div>
+              </li>
             ))}
         </div>
         {cartItems.length >= 1 && (
@@ -139,7 +139,7 @@ const Cart = () => {
             </div>
           </div>
         )}
-      </div>
+      </ul>
     </div>
   );
 };
